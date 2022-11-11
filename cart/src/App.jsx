@@ -1,5 +1,6 @@
 import React from "react";
-import ReactDOM from "react-dom";
+import { BrowserRouter as Router } from "react-router-dom";
+import { createRoot } from "react-dom/client";
 
 import "remixicon/fonts/remixicon.css";
 
@@ -10,12 +11,17 @@ import Footer from "home/Footer";
 import CartContent from "./CartContent";
 
 const App = () => (
-  <div className="mx-auto max-w-6xl">
-    <Header />
-    <div className="my-10">
-      <CartContent />
+  <Router>
+    <div className="mx-auto max-w-8xl">
+      <Header />
+      <div className="m-10">
+        <CartContent />
+      </div>
+      <Footer />
     </div>
-    <Footer />
-  </div>
+  </Router>
 );
-ReactDOM.render(<App />, document.getElementById("app"));
+
+const container = document.getElementById("app");
+const root = createRoot(container);
+root.render(<App />);

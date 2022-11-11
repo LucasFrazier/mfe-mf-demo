@@ -1,46 +1,46 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useParams } from "react-router-dom";
-import { getProductById, currency } from "home/products";
-import placeAddToCart from "addtocart/placeAddToCart";
+import { useStore } from "home/store";
+import { currency } from "home/products";
 
 export default function PDPContent() {
   const { id } = useParams();
-  const [product, setProduct] = useState(null);
-
-  const addToCart = useRef(null);
-
-  useEffect(() => {
-    if (addToCart.current) {
-      placeAddToCart(addToCart.current, product.id);
-    }
-  }, [product]);
+  const { products, addToCart } = useStore();
+  const [product, setProduct] = useState();
 
   useEffect(() => {
-    if (id) {
-      getProductById(id).then(setProduct);
-    } else {
-      setProduct(null);
-    }
-  }, [id]);
-
-  if (!product) return null;
+    setProduct(products.find((item) => item.id == id));
+  }, []);
 
   return (
-    <div className="grid grid-cols-2 gap-5">
-      <div>
-        <img src={product.image} alt={product.name} />
-      </div>
-      <div>
-        <div className="flex">
-          <h1 className="font-bold text-3xl flex-grow">{product.name}</h1>
-          <div className="font-bold text-3xl flex-end">
-            {currency.format(product.price)}
+    <>
+      {product && (
+        <div className="grid grid-cols-2 gap-5">
+          <div>
+            <img
+              className="h-1/2 mx-auto"
+              src={product.image}
+              alt={product.name}
+            />
+          </div>
+          <div>
+            <div className="flex">
+              <h1 className="font-bold text-3xl flex-grow">{product.name}</h1>
+              <div className="font-bold text-3xl flex-end">
+                {currency.format(product.price)}
+              </div>
+            </div>
+            <button
+              className="bg-blue-500 hover:bg-blue-700 text-white text-sm font-bold py-3 px-14 mt-4"
+              onClick={() => addToCart(product)}
+            >
+              Add to Cart
+            </button>
+            <div className="mt-10">{product.description}</div>
+            <div className="mt-10">{product.longDescription}</div>
           </div>
         </div>
-        <div ref={addToCart}></div>
-        <div className="mt-10">{product.description}</div>
-        <div className="mt-10">{product.longDescription}</div>
-      </div>
-    </div>
+      )}
+    </>
   );
 }

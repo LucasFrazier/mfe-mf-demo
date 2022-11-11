@@ -1,29 +1,28 @@
 import React from "react";
-import ReactDOM from "react-dom";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-
-import "./index.scss";
-
-import "remixicon/fonts/remixicon.css";
-
-import SafeComponent from "./SafeComponent";
+import { createRoot } from "react-dom/client";
+import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
+import routes from "./routes";
 import Header from "home/Header";
 import Footer from "home/Footer";
-import PDPContent from "./PDPContent";
+import "./index.scss";
+import "remixicon/fonts/remixicon.css";
 
 const App = () => (
   <Router>
-    <div className="text-3xl mx-auto max-w-6xl">
-      <SafeComponent>
-        <Header />
-      </SafeComponent>
-      <div className="my-10">
-        <Switch>
-          <Route path="/product/:id" component={PDPContent} />
-        </Switch>
+    <div className="text-3xl mx-auto max-w-8xl">
+      <Header />
+      <div className="m-10">
+        <Routes>
+          {routes.map((route) => (
+            <Route key={route.path} path={route.path} element={route.element} />
+          ))}
+        </Routes>
       </div>
       <Footer />
     </div>
   </Router>
 );
-ReactDOM.render(<App />, document.getElementById("app"));
+
+const container = document.getElementById("app");
+const root = createRoot(container);
+root.render(<App />);
