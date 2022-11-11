@@ -51,10 +51,9 @@ module.exports = {
       exposes: {
         "./Header": "./src/components/Header.jsx",
         "./Footer": "./src/components/Footer.jsx",
-        "./products": "./src/products.js",
+        "./logic": "./src/logic.js",
         "./HomeContent": "./src/components/HomeContent.jsx",
-        "./store": "./src/store.js",
-        "./cart": "./src/cart.js",
+        "./state": "./src/state.js",
         "./MiniCart": "./src/components/MiniCart.jsx",
       },
       shared: {

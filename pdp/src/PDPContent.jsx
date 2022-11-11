@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useParams } from "react-router-dom";
-import { useStore } from "home/store";
-import { currency } from "home/products";
+import { useStore } from "home/state";
+import { currency } from "home/logic";
 
 export default function PDPContent() {
   const { id } = useParams();

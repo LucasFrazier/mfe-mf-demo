@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { useStore } from "home/store";
-import { currency } from "../products";
+import { useStore } from "home/state";
+import { currency } from "../logic";
 
 export default function HomeContent() {
   const { products, setProducts, cart, addToCart } = useStore();

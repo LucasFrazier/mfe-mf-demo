@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef } from "react";
 import { Link } from "react-router-dom";
-import { currency } from "home/products";
-import { useStore } from "../store";
+import { currency } from "home/logic";
+import { useStore } from "../state";
 
 export default function MiniCart() {
   const { cart, clearCart } = useStore();

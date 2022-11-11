@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { useStore } from "home/store";
+import { useStore } from "home/state";
 
 export default function Login() {
   const { username, password, login, loggedIn, logout } = useStore();

@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 
-import { useStore } from "home/store";
-import { currency } from "home/products";
+import { useStore } from "home/state";
+import { currency } from "home/logic";
 
 export default function CartContent() {
   const { cart, clearCart } = useStore();
